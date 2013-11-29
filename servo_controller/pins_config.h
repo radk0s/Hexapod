@@ -1,0 +1,34 @@
+#define BT_RX 14
+#define BT_TX 15
+
+#define SRF_ECHO_1 22
+#define SRF_TRIG_1 23
+#define SRF_ECHO_2 24
+#define SRF_TRIG_2 25
+#define SRF_ECHO_3 26
+#define SRF_TRIG_3 27
+#define SRF_ECHO_4 28
+#define SRF_TRIG_4 29
+#define SRF_ECHO_5 30
+#define SRF_TRIG_5 31
+#define SRF_ECHO_6 32
+#define SRF_TRIG_6 33
+
+#define LEFT_FRONT_KNEE 34
+#define LEFT_FRONT_HORI 35
+#define LEFT_FRONT_VERT 36
+#define LEFT_MIDDLE_KNEE 37
+#define LEFT_MIDDLE_HORI 38
+#define LEFT_MIDDLE_VERT 39
+#define LEFT_REAR_KNEE 40
+#define LEFT_REAR_HORI 41
+#define LEFT_REAR_VERT 42
+#define RIGHT_FRONT_KNEE 43
+#define RIGHT_FRONT_HORI 44
+#define RIGHT_FRONT_VERT 45
+#define RIGHT_MIDDLE_KNEE 46
+#define RIGHT_MIDDLE_HORI 47
+#define RIGHT_MIDDLE_VERT 48
+#define RIGHT_REAR_KNEE 49
+#define RIGHT_REAR_HORI 50
+#define RIGHT_REAR_VERT 51
