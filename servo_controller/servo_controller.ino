@@ -15,20 +15,19 @@ void setup(){
   pinMode(LED_PIN, OUTPUT);
   leg1.initPosition(90,90,90);
   leg2.initPosition(90,90,90);
-  leg3.initPosition(90,90,90);
+  leg3.initPosition(90,110,90);
   leg4.initPosition(90,90,90);
   leg5.initPosition(90,90,90);
   leg6.initPosition(90,90,90);
-	leg1.verticalMovement(130);
-	leg2.verticalMovement(130);
-	leg5.verticalMovement(130);
+  delay(2000);
+
 }
 
 int i= 0;
 void loop(){
   
   if(i < 6) {
-    krok();
+    kneeTest();
     i++;
   }
   digitalWrite(LED_PIN, LOW);
@@ -40,16 +39,16 @@ void loop(){
 }
 
 void pompka(){
-    leg1.kneeMovement(90);
-    leg1.verticalMovement(90);
-    leg2.kneeMovement(90);
-    leg2.verticalMovement(90);
-    leg3.kneeMovement(90);
-    leg3.verticalMovement(90);
-    leg4.kneeMovement(90);
-    leg4.verticalMovement(90);
-    leg5.kneeMovement(90);
-    leg5.verticalMovement(90);
+    leg1.kneeMovement(60);
+    leg1.verticalMovement(60);
+    leg2.kneeMovement(60);
+    leg2.verticalMovement(60);
+    leg3.kneeMovement(60);
+    leg3.verticalMovement(60);
+    leg4.kneeMovement(60);
+    leg4.verticalMovement(60);
+    leg5.kneeMovement(60);
+    leg5.verticalMovement(60);
     leg6.kneeMovement(90);
     leg6.verticalMovement(90);
     delay(1000);
@@ -70,66 +69,89 @@ void pompka(){
 
 void twist(){
     leg1.horizontalMovement(90);
-
     leg2.horizontalMovement(90);
-
     leg3.horizontalMovement(90);
-
     leg4.horizontalMovement(90);
-
     leg5.horizontalMovement(90);
-
     leg6.horizontalMovement(90);
 
     delay(1000);
     leg1.horizontalMovement(130); 
-
     leg2.horizontalMovement(130); 
-
     leg3.horizontalMovement(130); 
-
     leg4.horizontalMovement(130); 
-
     leg5.horizontalMovement(130); 
-
     leg6.horizontalMovement(130); 
     delay(1000);   
 }
 
+void kneeTest(){
+    leg1.kneeMovement(90);
+    leg2.kneeMovement(90);
+    leg3.kneeMovement(90);
+    leg4.kneeMovement(90);
+    leg5.kneeMovement(90);
+    leg6.kneeMovement(90);
 
+    delay(1000);
+    leg1.kneeMovement(130); 
+    leg2.kneeMovement(130); 
+    leg3.kneeMovement(130); 
+    leg4.kneeMovement(130); 
+    leg5.kneeMovement(130); 
+    leg6.kneeMovement(130); 
+    delay(1000);   
+}
+
+// 180 w pione - gora
+// 180 poziom - w przod
+// 180 w kolanie - zgiete
 void krok(){
       
-	delay(1000);
-    leg1.kneeMovement(50);
-	leg2.horizontalMovement(130);
-	leg5.horizontalMovement(130); 
-        delay(1000); 
-	leg1.verticalMovement(90);
-	leg2.verticalMovement(90);
-	leg5.verticalMovement(90);
-	delay(1000);
-	leg6.verticalMovement(130);
-	leg3.verticalMovement(130);
-	leg4.verticalMovement(130);
+      	leg1.verticalMovement(130);
+    	leg2.verticalMovement(130);
+    	leg5.verticalMovement(130);
+  
+        delay(1000);
+        leg1.kneeMovement(50);
+        leg2.horizontalMovement(110);
+        leg5.horizontalMovement(110);
+        delay(1000);
+        leg1.verticalMovement(90);
+        leg2.verticalMovement(90);
+        leg5.verticalMovement(90);
+        delay(1000);
+        leg6.verticalMovement(130);
+        leg3.verticalMovement(130);
+        leg4.verticalMovement(130);
         leg1.kneeMovement(90);
-	leg2.horizontalMovement(50);
-	leg5.horizontalMovement(50); 
-	delay(1000);
-	leg6.kneeMovement(90);
-	leg3.horizontalMovement(130);
-	leg4.horizontalMovement(130); 
-        delay(1000); 
-	leg6.verticalMovement(90);
-	leg3.verticalMovement(90);
-	leg4.verticalMovement(90);
-	delay(1000);
-	leg1.verticalMovement(130);
-	leg2.verticalMovement(130);
-	leg5.verticalMovement(130);
-	leg6.kneeMovement(50);
-	leg3.horizontalMovement(50);
-	leg4.horizontalMovement(50); 
-	delay(1000);
+        leg2.horizontalMovement(70);
+        leg5.horizontalMovement(70);
+        delay(1000);
+        leg6.kneeMovement(130);
+        leg3.horizontalMovement(110);
+        leg4.horizontalMovement(110);
+        delay(1000);
+        leg6.verticalMovement(90);
+        leg3.verticalMovement(90);
+        leg4.verticalMovement(90);
+        delay(1000);
+        leg1.verticalMovement(110);
+        leg2.verticalMovement(110);
+        leg5.verticalMovement(110);
+        leg6.kneeMovement(90);
+        leg3.horizontalMovement(70);
+        leg4.horizontalMovement(70);
+        delay(1000);
+        
+  leg1.initPosition(90,90,90);
+  leg2.initPosition(90,90,90);
+  leg3.initPosition(90,110,90);
+  leg4.initPosition(90,90,90);
+  leg5.initPosition(90,90,90);
+  leg6.initPosition(90,90,90);
+  delay(2000);
+
 }
 
 

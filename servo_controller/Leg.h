@@ -23,6 +23,7 @@ public:
   int kneeMovement(int degrees);
   int horizontalMovement(int degrees);
   int verticalMovement(int degrees);
+  int reverseDegreesIfLeft(int degree);
 };
 
 #endif
