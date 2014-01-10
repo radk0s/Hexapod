@@ -115,7 +115,7 @@ void krok(){
 	leg2.horizontalMovement(50);
 	leg5.horizontalMovement(50); 
 	delay(1000);
-	leg6.kneeMovement(90);
+	leg6.kneeMovement(130);
 	leg3.horizontalMovement(130);
 	leg4.horizontalMovement(130); 
         delay(1000); 
@@ -126,7 +126,7 @@ void krok(){
 	leg1.verticalMovement(130);
 	leg2.verticalMovement(130);
 	leg5.verticalMovement(130);
-	leg6.kneeMovement(50);
+	leg6.kneeMovement(90);
 	leg3.horizontalMovement(50);
 	leg4.horizontalMovement(50); 
 	delay(1000);
