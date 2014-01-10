@@ -19,16 +19,16 @@ void setup(){
   leg4.initPosition(90,90,90);
   leg5.initPosition(90,90,90);
   leg6.initPosition(90,90,90);
-//	leg1.verticalMovement(130);
-//	leg2.verticalMovement(130);
-//	leg5.verticalMovement(130);
+	leg1.verticalMovement(130);
+	leg2.verticalMovement(130);
+	leg5.verticalMovement(130);
 }
 
 int i= 0;
 void loop(){
   
   if(i < 6) {
-    twist();
+    krok();
     i++;
   }
   digitalWrite(LED_PIN, LOW);
@@ -100,7 +100,7 @@ void twist(){
 void krok(){
       
 	delay(1000);
-        leg1.kneeMovement(50);
+    leg1.kneeMovement(50);
 	leg2.horizontalMovement(130);
 	leg5.horizontalMovement(130); 
         delay(1000); 
@@ -126,9 +126,9 @@ void krok(){
 	leg1.verticalMovement(130);
 	leg2.verticalMovement(130);
 	leg5.verticalMovement(130);
-	leg1.kneeMovement(50);
-	leg2.horizontalMovement(50);
-	leg5.horizontalMovement(50); 
+	leg6.kneeMovement(50);
+	leg3.horizontalMovement(50);
+	leg4.horizontalMovement(50); 
 	delay(1000);
 }
 
