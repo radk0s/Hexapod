@@ -19,14 +19,51 @@ void setup(){
   leg4.initPosition(90,90,90);
   leg5.initPosition(90,90,90);
   leg6.initPosition(90,90,90);
+  delay(1000);
 }
 
 int i= 0;
 void loop(){
-	leg1.verticalMovement(130);
+  if(i < 1){
+    test();
+    i++;
+  }
+
+}
+
+void pompka(){
+    leg1.kneeMovement(150);
+    leg1.verticalMovement(150);
+//    leg2.kneeMovement(150);
+//    leg2.verticalMovement(150);
+//    leg3.kneeMovement(150);
+//    leg3.verticalMovement(150);
+//    leg4.kneeMovement(150);
+//    leg4.verticalMovement(150);
+//    leg5.kneeMovement(150);
+//    leg5.verticalMovement(150);
+//    leg6.kneeMovement(150);
+//    leg6.verticalMovement(150);
+    delay(1000);
+    leg1.kneeMovement(30); 
+    leg1.verticalMovement(30);
+//    leg2.kneeMovement(30); 
+//    leg2.verticalMovement(30); 
+//    leg3.kneeMovement(30); 
+//    leg3.verticalMovement(30); 
+//    leg4.kneeMovement(30); 
+//    leg4.verticalMovement(30); 
+//    leg5.kneeMovement(30); 
+//    leg5.verticalMovement(30); 
+//    leg6.kneeMovement(30); 
+    delay(1000);   
+}
+
+void krok(){
+  	leg1.verticalMovement(130);
 	leg2.verticalMovement(130);
 	leg5.verticalMovement(130);
-  if(i < 6) {		
+  if(i < 3) {		
     
 	delay(1000);
     leg1.kneeMovement(130);
@@ -40,11 +77,11 @@ void loop(){
 	leg6.verticalMovement(130);
 	leg3.verticalMovement(130);
 	leg4.verticalMovement(130);
-    leg1.kneeMovement(50);
+    leg1.kneeMovement(90);
 	leg2.horizontalMovement(50);
 	leg5.horizontalMovement(50); 
 	delay(1000);
-	leg6.kneeMovement(50);
+	leg6.kneeMovement(90);
 	leg3.horizontalMovement(130);
 	leg4.horizontalMovement(130); 
     delay(1000); 
@@ -66,7 +103,27 @@ void loop(){
   digitalWrite(LED_PIN, HIGH); 
   delay(300);
 
+}
 
+void test(){
+    leg1.kneeMovement(180);
+    leg1.horizontalMovement(180);
+    leg1.verticalMovement(180);
+    leg2.kneeMovement(180);
+    leg2.horizontalMovement(180);
+    leg2.verticalMovement(180);
+    leg3.kneeMovement(180);
+    leg3.horizontalMovement(180);
+    leg3.verticalMovement(180);
+    leg4.kneeMovement(180);
+    leg4.horizontalMovement(180);
+    leg4.verticalMovement(180);
+    leg5.kneeMovement(180);
+    leg5.horizontalMovement(180);
+    leg5.verticalMovement(180);
+    leg6.kneeMovement(180);
+    leg6.horizontalMovement(180);
+    leg6.verticalMovement(180);
 }
 
 
