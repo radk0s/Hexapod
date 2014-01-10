@@ -23,41 +23,41 @@ void setup(){
 
 int i= 0;
 void loop(){
-	leg1.verticalMovement(180);
-	leg2.verticalMovement(180);
-	leg5.verticalMovement(180);
+	leg1.verticalMovement(130);
+	leg2.verticalMovement(130);
+	leg5.verticalMovement(130);
   if(i < 6) {		
     
 	delay(1000);
-    leg1.kneeMovement(180);
-	leg2.horizontalMovement(180);
-	leg5.horizontalMovement(180); 
+    leg1.kneeMovement(130);
+	leg2.horizontalMovement(130);
+	leg5.horizontalMovement(130); 
     delay(1000); 
 	leg1.verticalMovement(90);
 	leg2.verticalMovement(90);
 	leg5.verticalMovement(90);
 	delay(1000);
-	leg6.verticalMovement(180);
-	leg3.verticalMovement(180);
-	leg4.verticalMovement(180);
-    leg1.kneeMovement(0);
-	leg2.horizontalMovement(0);
-	leg5.horizontalMovement(0); 
+	leg6.verticalMovement(130);
+	leg3.verticalMovement(130);
+	leg4.verticalMovement(130);
+    leg1.kneeMovement(50);
+	leg2.horizontalMovement(50);
+	leg5.horizontalMovement(50); 
 	delay(1000);
-	leg6.kneeMovement(0);
-	leg3.horizontalMovement(180);
-	leg4.horizontalMovement(180); 
+	leg6.kneeMovement(50);
+	leg3.horizontalMovement(130);
+	leg4.horizontalMovement(130); 
     delay(1000); 
 	leg6.verticalMovement(90);
 	leg3.verticalMovement(90);
 	leg4.verticalMovement(90);
 	delay(1000);
-	leg1.verticalMovement(180);
-	leg2.verticalMovement(180);
-	leg5.verticalMovement(180);
-	leg1.kneeMovement(180);
-	leg2.horizontalMovement(0);
-	leg5.horizontalMovement(0); 
+	leg1.verticalMovement(130);
+	leg2.verticalMovement(130);
+	leg5.verticalMovement(130);
+	leg1.kneeMovement(130);
+	leg2.horizontalMovement(50);
+	leg5.horizontalMovement(50); 
 	delay(1000);
     i++;
   }
