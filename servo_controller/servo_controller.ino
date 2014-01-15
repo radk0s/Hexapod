@@ -275,13 +275,11 @@ void kneeTest(){
 
 void krok(){      
       leg1.verticalMovement(130);
-    leg3.verticalMovement(130);
-    leg5.verticalMovement(130);
+	  leg3.verticalMovement(130);
+      leg5.verticalMovement(130);
   
         delay(1000);
         leg1.kneeMovement(50);
-leg3.horizontalMovement(130);
-leg5.horizontalMovement(130); 
         leg3.horizontalMovement(110);
         leg5.horizontalMovement(110);
         delay(1000);
@@ -292,16 +290,12 @@ leg5.horizontalMovement(130);
         leg6.verticalMovement(130);
         leg2.verticalMovement(130);
         leg4.verticalMovement(130);
-        leg1.kneeMovement(90);
-leg3.horizontalMovement(50);
-leg5.horizontalMovement(50); 
+        leg1.kneeMovement(90); 
         leg3.horizontalMovement(70);
         leg5.horizontalMovement(70);
         delay(1000);
-leg6.kneeMovement(90);
-leg2.horizontalMovement(130);
-leg4.horizontalMovement(130); 
-        leg6.kneeMovement(130);
+
+        leg6.kneeMovement(110);
         leg2.horizontalMovement(110);
         leg4.horizontalMovement(110);
         delay(1000);
@@ -309,18 +303,12 @@ leg4.horizontalMovement(130);
         leg2.verticalMovement(90);
         leg4.verticalMovement(90);
         delay(1000);
-leg1.verticalMovement(130);
-leg3.verticalMovement(130);
-leg5.verticalMovement(130);
-leg6.kneeMovement(50);
-leg2.horizontalMovement(50);
-leg4.horizontalMovement(50); 
-        leg1.verticalMovement(110);
-        leg3.verticalMovement(110);
-        leg5.verticalMovement(110);
+		leg1.verticalMovement(130);
+		leg3.verticalMovement(130);
+		leg5.verticalMovement(130);
+		leg2.horizontalMovement(50);
+		leg4.horizontalMovement(50); 
         leg6.kneeMovement(90);
-        leg2.horizontalMovement(70);
-        leg4.horizontalMovement(70);
         delay(1000);
         
   delay(2000);
