@@ -29,15 +29,13 @@ void setup(){
 
 int i= 0;
 void loop(){
-  if( getFrontDistance() < 15) {
-    obrot(5);
+  if( getFrontDistance() < 25) {
+    obrot(3);
+    obrot(3);
     delay(300);
-    //flushLed();
+   // flushLed();
   }  
-//  if(i < 6) {
-//    krok2();
-//    i++;
-//  }
+  step(3);
 }
 
 void flushLed(){
@@ -132,7 +130,7 @@ void step(int sleep){
 
 void obrot(int sleep){
   
-  for(int i = 0; i<40; i ++){ // zmiana o 40 stopni // podnoszenie nog 1 3 5
+  for(int i = 0; i<45; i ++){ // zmiana o 40 stopni // podnoszenie nog 1 3 5
    leg1.incVertical();
    leg3.incVertical();
    leg5.incVertical();
@@ -157,7 +155,7 @@ void obrot(int sleep){
    delay(sleep);
   } 
   
-  for(int i = 0; i<40; i ++){ // zmiana o 40 stopni // opadanie nog 1 3 5
+  for(int i = 0; i<45; i ++){ // zmiana o 40 stopni // opadanie nog 1 3 5
    leg1.decVertical();
    leg3.decVertical();
    leg5.decVertical();
@@ -175,7 +173,7 @@ void obrot(int sleep){
    delay(sleep);
   }  
   
-  for(int i = 0; i<40; i ++){ // zmiana o 40 stopni // podnoszenie nog 2 4 6
+  for(int i = 0; i<45; i ++){ // zmiana o 40 stopni // podnoszenie nog 2 4 6
    leg2.incVertical();
    leg4.incVertical();
    leg6.incVertical();
@@ -199,7 +197,7 @@ void obrot(int sleep){
    delay(sleep);
   } 
   
-  for(int i = 0; i<40; i ++){ // zmiana o 40 stopni // opadanie nog 2 4 6
+  for(int i = 0; i<45; i ++){ // zmiana o 40 stopni // opadanie nog 2 4 6
    leg2.decVertical();
    leg4.decVertical();
    leg6.decVertical();
