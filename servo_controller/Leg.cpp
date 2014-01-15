@@ -25,33 +25,56 @@ void Leg::initPosition( int init_knee_pos, int init_horiz_pos, int init_vert_pos
 
 int Leg::kneeMovement(int degrees)
 { 
-    int pos;
-    if (degrees > knee_current_pos)
-      for(pos = knee_current_pos; pos <= degrees; pos += 1)  
-      {                                  
-          servo_knee.write(reverseDegreesIfLeft(pos));
-          knee_current_pos = pos;      
-          delay(20);                       
-      }
-    else
-      for(pos = knee_current_pos; pos >= degrees; pos -= 1)  
-      {                                  
-          servo_knee.write(reverseDegreesIfLeft(pos));
-          knee_current_pos = pos;      
-          delay(20);                       
-      };
-  
-    
+    knee_current_pos = degrees;
+    servo_knee.write(reverseDegreesIfLeft(degrees)); 
+}
+
+void Leg::incKnee()
+{ 
+    ++knee_current_pos;
+    servo_knee.write(reverseDegreesIfLeft(knee_current_pos)); 
+}
+
+void Leg::decKnee()
+{ 
+    --knee_current_pos;
+    servo_knee.write(reverseDegreesIfLeft(knee_current_pos)); 
 }
 
 int Leg::horizontalMovement(int degrees)
-{                                  
+{ 
+    knee_current_pos = degrees;  
     servo_horizontal.write(reverseDegreesIfLeft(degrees));
 }
 
+void Leg::incHorizontal()
+{ 
+    ++horizontal_current_pos;
+    servo_horizontal.write(reverseDegreesIfLeft(horizontal_current_pos)); 
+}
+
+void Leg::decHorizontal()
+{ 
+    --horizontal_current_pos;
+    servo_horizontal.write(reverseDegreesIfLeft(horizontal_current_pos)); 
+}
+
 int Leg::verticalMovement(int degrees)
-{                                
+{ 
+    knee_current_pos = degrees;  
     servo_vertical.write(reverseDegreesIfLeft(degrees));
+}
+
+void Leg::incVertical()
+{ 
+    ++vertical_current_pos;
+    servo_vertical.write(reverseDegreesIfLeft(vertical_current_pos)); 
+}
+
+void Leg::decVertical()
+{ 
+    --vertical_current_pos;
+    servo_vertical.write(reverseDegreesIfLeft(vertical_current_pos)); 
 }
 
 int Leg::reverseDegreesIfLeft(int degree){
