@@ -14,9 +14,9 @@ Leg leg6(RIGHT_REAR_KNEE, RIGHT_REAR_HORI, RIGHT_REAR_VERT, true);
 // 180 poziom - w przod
 // 180 w kolanie - zgiete
 void setup(){
-//  pinMode(LED_PIN, OUTPUT);
-//  pinMode(SRF_ECHO_1, INPUT);
-//  pinMode(SRF_TRIG_1, OUTPUT);
+  pinMode(LED_PIN, OUTPUT);
+  pinMode(SRF_ECHO_1, INPUT);
+  pinMode(SRF_TRIG_1, OUTPUT);
   leg1.initPosition(90,90,90);
   leg2.initPosition(90,90,90);
   leg3.initPosition(90,90,90);
@@ -29,13 +29,22 @@ void setup(){
 
 int i= 0;
 void loop(){
-//  if( getFrontDistance() < 30) {
-//    obrot(20);
-//  }  
-  if(i < 6) {
-    krok2();
-    i++;
-  }
+  if( getFrontDistance() < 15) {
+    obrot(5);
+    delay(300);
+    //flushLed();
+  }  
+//  if(i < 6) {
+//    krok2();
+//    i++;
+//  }
+}
+
+void flushLed(){
+   digitalWrite(LED_PIN , HIGH);
+   delay(500); 
+   digitalWrite(LED_PIN , LOW);
+   delay(500); 
 }
 
 int getFrontDistance(){
