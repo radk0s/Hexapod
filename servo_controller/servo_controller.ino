@@ -518,48 +518,61 @@ void kneeTest(){
     delay(1000);   
 }
 
-void krok(){      
-      leg1.verticalMovement(130);
-	  leg3.verticalMovement(130);
-      leg5.verticalMovement(130);
-  
-        delay(1000);
-        leg1.kneeMovement(50);
-        leg3.horizontalMovement(110);
-        leg5.horizontalMovement(110);
-        delay(1000);
-        leg1.verticalMovement(90);
-        leg3.verticalMovement(90);
-        leg5.verticalMovement(90);
-        delay(1000);
-        leg6.verticalMovement(130);
-        leg2.verticalMovement(130);
-        leg4.verticalMovement(130);
-        leg1.kneeMovement(90); 
-        leg3.horizontalMovement(70);
-        leg5.horizontalMovement(70);
-        delay(1000);
-
-        leg6.kneeMovement(110);
-        leg2.horizontalMovement(110);
-        leg4.horizontalMovement(110);
-        delay(1000);
-        leg6.verticalMovement(90);
-        leg2.verticalMovement(90);
-        leg4.verticalMovement(90);
-        delay(1000);
-		leg1.verticalMovement(130);
-		leg3.verticalMovement(130);
-		leg5.verticalMovement(130);
-		leg2.horizontalMovement(50);
-		leg4.horizontalMovement(50); 
-        leg6.kneeMovement(90);
-        delay(1000);
+void krok(int sleep){      
+	for(int i = 0; i<40; i ++){ //nogi 1,3,5 do gory i w przod
+		leg1.incVertical();
+		leg3.incVertical();
+		leg5.incVertical();
+        leg1.decKnee();
+		if(i%2==0){
+			leg3.incHorizontal();
+			leg5.incHorizontal();
+		}
+		delay(sleep);
+	}
+	
         
-  delay(2000);
+	for(int i = 0; i<40; i ++){  //nogi 1,3,5 w dol
+        leg1.decVertical();
+        leg3.decVertical();
+        leg5.decVertical();
+		delay(sleep);
+    }
+	
+	for(int i = 0; i<40; i ++){  //zobaczyc jak bedzie wygladalo polaczone z poprzednia petla ; nogi 2,4,6 w gore, 1,3,5 w tyl
+        leg6.incVertical();
+        leg2.incVertical();
+        leg4.incVertical();
+        leg1.incKnee(); 
+        leg3.decHorizontal();
+        leg5.decHorizontal();
+		leg6.incKnee();
+        leg2.incHorizontal();
+        leg4.incHorizontal();
+		delay(sleep);
+    }
+
+	for(int i = 0; i<40; i ++){
+        leg6.decVertical();
+        leg2.decVertical();
+        leg4.decVertical();
+		delay(sleep);
+    }
+	
+	for(int i = 0; i<40; i ++){ //tu też sprobowac polaczyc
+		leg1.incVertical();
+		leg3.incVertical();
+		leg5.incVertical();
+		leg2.decHorizontal();
+		leg4.decHorizontal(); 
+        leg6.decKnee();
+		delay(sleep);
+    }
+        
+delay(sleep);
 }
 
-void krok2(){
+void krok2(int sleep){
   
   leg1.initPosition(90,10,90); //1
   leg5.initPosition(90,75,90); //2
@@ -569,78 +582,120 @@ void krok2(){
   leg6.initPosition(90,170,90); //6
   delay(500);
   
-  leg1.verticalMovement(110);
-  leg1.horizontalMovement(60); //6
-  delay(500);
-  
-  leg5.horizontalMovement(65); //1
-  leg3.horizontalMovement(130); //2
-  leg4.horizontalMovement(30); //3
-  leg2.horizontalMovement(95); //4
-  leg6.horizontalMovement(160); //5
-  leg1.verticalMovement(90);
- delay(500);
- 
-  leg5.verticalMovement(110);
-  leg5.horizontalMovement(115); //6
-  delay(500);
-  
-  leg3.horizontalMovement(120); //1
-  leg4.horizontalMovement(20); //2
-  leg2.horizontalMovement(85); //3
-  leg6.horizontalMovement(170); //4
-  leg1.horizontalMovement(50); //5
-  leg5.verticalMovement(90);
-  delay(500);
-  
-  leg3.verticalMovement(110);
-  leg3.horizontalMovement(170); //6
-  delay(500);
-  
-  leg4.horizontalMovement(10); //1
-  leg2.horizontalMovement(75); //2
-  leg6.horizontalMovement(160); //3
-  leg1.horizontalMovement(40); //4
-  leg5.horizontalMovement(105); //5
-  leg3.verticalMovement(90);
-  delay(500);
-  
-  leg4.verticalMovement(110);
-  leg4.horizontalMovement(60); //6
-  delay(500);
-  
-  leg2.horizontalMovement(65); //1
-  leg6.horizontalMovement(150); //2
-  leg1.horizontalMovement(30); //3
-  leg5.horizontalMovement(95); //4
-  leg3.horizontalMovement(160); //5
-  leg4.verticalMovement(90);
-  delay(500);
-  
-  leg2.verticalMovement(110);
-  leg2.horizontalMovement(115); //6
-  delay(500);
-  
-  leg6.horizontalMovement(140); //1
-  leg1.horizontalMovement(20); //2
-  leg5.horizontalMovement(85); //3
-  leg3.horizontalMovement(150); //4
-  leg4.horizontalMovement(50); //5
-  leg2.verticalMovement(90);
-  delay(500);
-  
-  leg6.verticalMovement(110);
-  leg6.horizontalMovement(170); //6
-  delay(500);
-  
-  leg1.horizontalMovement(10); //1
-  leg5.horizontalMovement(75); //2
-  leg3.horizontalMovement(140); //3
-  leg4.horizontalMovement(40); //4
-  leg2.horizontalMovement(105); //5
-  leg6.verticalMovement(90);
-  delay(500);
-  
+  for(int i = 0; i<40; i ++){
+	if(i<20){
+		leg1.incVertical();           //20
+	}
+	leg1.incHorizontal(); //6			//40
+	  
+	if(i%5==0){
+	  leg5.decHorizontal(); //1
+	  leg3.decHorizontal(); //2
+	  leg4.decHorizontal(); //3
+	  leg2.decHorizontal(); //4
+	  leg6.decHorizontal(); //5
+	}
+	if(i>=20){
+		leg1.decVertical();
+	}
+	delay(sleep);
+	}
+	
+ for(int i = 0; i<40; i ++){
+	if(i<20){
+		leg5.incVertical();           //20
+	}
+	leg5.incHorizontal(); //6			//40
+	  
+	if(i%5==0){
+	  leg3.decHorizontal(); //1
+	  leg4.decHorizontal(); //2
+	  leg2.decHorizontal(); //3
+	  leg6.decHorizontal(); //4
+	  leg1.decHorizontal(); //5
+	}
+	if(i>=20){
+		leg5.decVertical();
+	}
+	delay(sleep);
+	}
+	
+ for(int i = 0; i<40; i ++){
+	if(i<20){
+		leg3.incVertical();           //20
+	}
+	leg3.incHorizontal(); //6			//40
+	  
+	if(i%5==0){
+	  leg4.decHorizontal(); //1
+	  leg2.decHorizontal(); //2
+	  leg6.decHorizontal(); //3
+	  leg1.decHorizontal(); //4
+	  leg5.decHorizontal(); //5
+	}
+	if(i>=20){
+		leg3.decVertical();
+	}
+	delay(sleep);
+	}
+
+ for(int i = 0; i<40; i ++){
+	if(i<20){
+		leg4.incVertical();           //20
+	}
+	leg4.incHorizontal(); //6			//40
+	  
+	if(i%5==0){
+	  leg2.decHorizontal(); //1
+	  leg6.decHorizontal(); //2
+	  leg1.decHorizontal(); //3
+	  leg5.decHorizontal(); //4
+	  leg3.decHorizontal(); //5
+	}
+	if(i>=20){
+		leg4.decVertical();
+	}
+	delay(sleep);
+	}
+	
+ for(int i = 0; i<40; i ++){
+	if(i<20){
+		leg2.incVertical();           //20
+	}
+	leg2.incHorizontal(); //6			//40
+	  
+	if(i%5==0){
+	  leg6.decHorizontal(); //1
+	  leg1.decHorizontal(); //2
+	  leg5.decHorizontal(); //3
+	  leg3.decHorizontal(); //4
+	  leg4.decHorizontal(); //5
+	}
+	if(i>=20){
+		leg2.decVertical();
+	}
+	delay(sleep);
+	}	
+	
+ for(int i = 0; i<40; i ++){
+	if(i<20){
+		leg6.incVertical();           //20
+	}
+	leg6.incHorizontal(); //6			//40
+	  
+	if(i%5==0){
+	  leg1.decHorizontal(); //1
+	  leg5.decHorizontal(); //2
+	  leg3.decHorizontal(); //3
+	  leg4.decHorizontal(); //4
+	  leg2.decHorizontal(); //5
+	}
+	if(i>=20){
+		leg6.decVertical();
+	}
+	delay(sleep);
+	}	
+
 }
 
 
