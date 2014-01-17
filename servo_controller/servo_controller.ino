@@ -17,13 +17,13 @@ void setup(){
   pinMode(LED_PIN, OUTPUT);
   pinMode(SRF_ECHO_1, INPUT);
   pinMode(SRF_TRIG_1, OUTPUT);
-  leg1.initPosition(170,90,170);
-  leg2.initPosition(170,90,170);
-  leg3.initPosition(170,90,170);
-  leg3.initPosition(170,90,170);
-  leg4.initPosition(170,90,170);
-  leg5.initPosition(170,90,170);
-  leg6.initPosition(170,90,170);
+  leg1.initPosition(90,90,90);
+  leg2.initPosition(90,90,90);
+  leg3.initPosition(90,90,90);
+  leg3.initPosition(90,90,90);
+  leg4.initPosition(90,90,90);
+  leg5.initPosition(90,90,90);
+  leg6.initPosition(90,90,90);
   delay(2000);
 }
 
@@ -31,27 +31,29 @@ int distance = 0;
 boolean freeze = true;
 
 void loop(){
-  distance = getFrontDistance();
-  if( freeze ) {
-    flushLed();
-  }
-  if( distance < 5) {
-    freeze = !freeze;
-    if ( !freeze) {
-      initStartPosition();
-      sayHello(5);
-    }
-  } 
-  if( distance < 30) {
-    initStartPosition();
-    sayHello(5);
-    rotate(5, 45);
-    rotate(5, 45);
-  }
-   if( !freeze ) {
-    initMove();
-    simpleMove(5);
-  }  
+//  distance = getFrontDistance();
+//  if( freeze ) {
+//    flushLed();
+//  }
+//  if( distance < 5) {
+//    freeze = !freeze;
+//    if ( !freeze) {
+//      initStartPosition();
+//      sayHello(5);
+//    }
+//  } 
+//  if( distance < 30 && !freeze ) {
+//    initStartPosition();
+    sayHello(10);
+//    rotate(5, 45);
+//    rotate(5, 45);
+//  }
+//   if( !freeze ) {
+//    initMove();
+//    simpleMove(5);
+//  } 
+  //initMove();
+  //simpleMove(10);
 
 }
 
@@ -86,14 +88,14 @@ void initMove(){
     leg5.verticalMovement(90);
     leg6.verticalMovement(90);
     leg1.kneeMovement(112);
-    //leg2.kneeMovement(68);
-    leg2.kneeMovement(90);
+    leg2.kneeMovement(68);
+    //leg2.kneeMovement(90);
     leg3.kneeMovement(68);
     leg4.kneeMovement(68);
-    //leg5.kneeMovement(112);
-    leg5.kneeMovement(90);
+    leg5.kneeMovement(112);
+    //leg5.kneeMovement(90);
     leg6.kneeMovement(112);
-    delay(200);
+    delay(000);
 }
 
 void initStartPosition(){
@@ -216,8 +218,8 @@ void simpleMove(int sleep){
      leg3.incKnee();
      leg4.incKnee();
      leg6.decKnee();
-     //leg2.incKnee();
-     //leg5.decKnee();
+     leg2.incKnee();
+     leg5.decKnee();
    }
    delay(sleep);
   } 
@@ -239,8 +241,8 @@ void simpleMove(int sleep){
      leg3.incKnee();
      leg4.incKnee();
      leg6.decKnee();
-     //leg2.incKnee();
-     //leg5.decKnee();
+     leg2.incKnee();
+     leg5.decKnee();
      }
      delay(sleep);
   } 
@@ -262,8 +264,8 @@ void simpleMove(int sleep){
      leg3.decKnee();
      leg4.decKnee();
      leg6.incKnee();
-     //leg2.decKnee();
-     //leg5.incKnee();
+     leg2.decKnee();
+     leg5.incKnee();
    }
    delay(sleep);
   }
@@ -285,8 +287,8 @@ void simpleMove(int sleep){
      leg3.decKnee();
      leg4.decKnee();
      leg6.incKnee();
-     //leg2.decKnee();
-     //leg5.incKnee();
+     leg2.decKnee();
+     leg5.incKnee();
    }
    delay(sleep);
   } 
