@@ -43,7 +43,7 @@ void Leg::decKnee()
 
 int Leg::horizontalMovement(int degrees)
 { 
-    knee_current_pos = degrees;  
+    horizontal_current_pos = degrees;  
     servo_horizontal.write(reverseDegreesIfLeft(degrees));
 }
 
@@ -61,7 +61,7 @@ void Leg::decHorizontal()
 
 int Leg::verticalMovement(int degrees)
 { 
-    knee_current_pos = degrees;  
+    vertical_current_pos = degrees;  
     servo_vertical.write(reverseDegreesIfLeft(degrees));
 }
 

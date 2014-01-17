@@ -25,36 +25,40 @@ void setup(){
   leg5.initPosition(90,90,90);
   leg6.initPosition(90,90,90);
   delay(2000);
+  initMove();
 }
 
 int distance = 0;
 boolean freeze = true;
 
 void loop(){
-//  distance = getFrontDistance();
-//  if( freeze ) {
-//    flushLed();
-//  }
-//  if( distance < 5) {
-//    freeze = !freeze;
-//    if ( !freeze) {
-//      initStartPosition();
-//      sayHello(5);
-//    }
-//  } 
-//  if( distance < 30 && !freeze ) {
-//    initStartPosition();
-    sayHello(10);
-//    rotate(5, 45);
-//    rotate(5, 45);
-//  }
-//   if( !freeze ) {
-//    initMove();
-//    simpleMove(5);
-//  } 
-  //initMove();
-  //simpleMove(10);
-
+  distance = getFrontDistance();
+  if( freeze ) {
+    flushLed();
+  }
+    if( distance < 60 && !freeze ) {
+    initStartPosition();
+    sayHello(5);
+    initStartPosition();
+    rotate(6, 30);
+    rotate(6, 30);
+    rotate(6, 30);
+  }
+  if( distance < 30) {
+    freeze = !freeze;
+    if ( !freeze) {
+      initStartPosition();
+      //sayHello(10);
+    } else {
+    sayHello(5);
+  }
+    delay(2000);
+  } 
+   if( !freeze ) {
+    initMove();
+    simpleMove(3);
+    //delay(3000);
+  } 
 }
 
 void flushLed(){
@@ -87,15 +91,15 @@ void initMove(){
     leg4.verticalMovement(90);
     leg5.verticalMovement(90);
     leg6.verticalMovement(90);
-    leg1.kneeMovement(112);
+    leg1.kneeMovement(104);
     leg2.kneeMovement(68);
     //leg2.kneeMovement(90);
     leg3.kneeMovement(68);
     leg4.kneeMovement(68);
-    leg5.kneeMovement(112);
+    leg5.kneeMovement(96);
     //leg5.kneeMovement(90);
     leg6.kneeMovement(112);
-    delay(000);
+    delay(60);
 }
 
 void initStartPosition(){
@@ -121,7 +125,7 @@ void initStartPosition(){
 }
 
 void sayHello(int sleep){
-  for(int i = 0; i < 60; i++){
+  for(int i = 0; i < 80; i++){
     if( i % 2 == 0){
       leg1.incHorizontal();
       leg4.incHorizontal();
@@ -172,7 +176,7 @@ void sayHello(int sleep){
     }
   } 
   
-  for(int i = 0; i < 60; i++){
+  for(int i = 0; i < 80; i++){
     if( i % 2 == 0){
       leg1.decHorizontal();
       leg4.decHorizontal();
@@ -200,7 +204,7 @@ void sayHello(int sleep){
   }
 }
 
-void simpleMove(int sleep){  
+void simpleMove(int sleep){
   for(int i = 0; i<45; i ++){
     leg1.incVertical();
     leg3.incVertical();
@@ -223,7 +227,6 @@ void simpleMove(int sleep){
    }
    delay(sleep);
   } 
-  
   for(int i = 0; i<45; i ++){
     leg1.decVertical();
     leg3.decVertical();
@@ -245,12 +248,33 @@ void simpleMove(int sleep){
      leg5.decKnee();
      }
      delay(sleep);
-  } 
-
+  }
   for(int i = 0; i<45; i ++){
-    leg1.incVertical();
-    leg3.incVertical();
-    leg5.incVertical();
+    leg2.incVertical();
+    leg4.incVertical();
+    leg6.incVertical();
+    leg2.incHorizontal();
+    leg5.decHorizontal();
+    if ( i %3 == 0 ) {
+      leg1.decHorizontal();
+      leg3.decHorizontal();
+      leg4.incHorizontal();
+      leg6.incHorizontal(); 
+    } 
+   if( i % 2 == 0){
+     leg1.incKnee();
+     leg3.decKnee();
+     leg4.decKnee();
+     leg6.incKnee();
+     leg2.decKnee();
+     leg5.incKnee();
+   }
+   delay(sleep);
+  }  
+  for(int i = 0; i<45; i ++){
+    leg2.decVertical();
+    leg4.decVertical();
+    leg6.decVertical();
     leg2.incHorizontal();
     leg5.decHorizontal();
     if ( i %3 == 0 ) {
@@ -269,29 +293,6 @@ void simpleMove(int sleep){
    }
    delay(sleep);
   }
-  
-  for(int i = 0; i<45; i ++){
-    leg1.incVertical();
-    leg3.incVertical();
-    leg5.incVertical();
-    leg2.incHorizontal();
-    leg5.decHorizontal();
-    if ( i %3 == 0 ) {
-      leg1.decHorizontal();
-      leg3.decHorizontal();
-      leg4.incHorizontal();
-      leg6.incHorizontal(); 
-    } 
-   if( i % 2 == 0){
-     leg1.incKnee();
-     leg3.decKnee();
-     leg4.decKnee();
-     leg6.incKnee();
-     leg2.decKnee();
-     leg5.incKnee();
-   }
-   delay(sleep);
-  } 
 }
 
 void rotate(int sleep, int degrees){
@@ -568,6 +569,10 @@ void krok(int sleep){
 		leg2.decHorizontal();
 		leg4.decHorizontal(); 
         leg6.decKnee();
+        if(i%2==0){
+			leg3.incHorizontal();
+			leg5.incHorizontal();
+		}
 		delay(sleep);
     }
         
