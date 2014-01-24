@@ -30,6 +30,7 @@ void setup(){
 
 int distance = 0;
 boolean freeze = true;
+int i = 0;
 
 void loop(){
   distance = getFrontDistance();
@@ -55,9 +56,23 @@ void loop(){
     delay(2000);
   } 
    if( !freeze ) {
+    
+    if(i==0){
+    i++;
     initMove();
     simpleMove(3);
-    //delay(3000);
+    }
+    if(i==1){
+    i++;
+    initStartPosition();
+    krok(3);
+    }
+    if(i==3){
+    i=0;
+    initKrok2();
+    krok2(3);
+    }
+
   } 
 }
 
@@ -122,6 +137,28 @@ void initStartPosition(){
     leg5.kneeMovement(90);
     leg6.kneeMovement(90);
     delay(200);
+}
+
+void initKrok2(){
+    leg1.horizontalMovement(75);
+    leg2.horizontalMovement(135);
+    leg3.horizontalMovement(75);
+    leg4.horizontalMovement(105);
+    leg5.horizontalMovement(45);
+    leg6.horizontalMovement(105);
+    leg1.verticalMovement(90);
+    leg2.verticalMovement(90);
+    leg3.verticalMovement(90);
+    leg4.verticalMovement(90);
+    leg5.verticalMovement(90);
+    leg6.verticalMovement(90);
+    leg1.kneeMovement(90);
+    leg2.kneeMovement(90);
+    leg3.kneeMovement(90);
+    leg4.kneeMovement(90);
+    leg5.kneeMovement(90);
+    leg6.kneeMovement(90);
+    delay(60);
 }
 
 void sayHello(int sleep){
