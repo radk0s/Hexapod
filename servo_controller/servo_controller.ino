@@ -1,6 +1,8 @@
-#include <Servo.h>
+  #include <Servo.h>
 #include "Leg.h"
+#include "Configuration.h"
 #include "pins_config.h"
+
 
 #define LED_PIN 13
 
@@ -25,11 +27,18 @@ void setup(){
   leg5.initPosition(90,90,90);
   leg6.initPosition(90,90,90);
   delay(2000);
-  initMove();
 }
 
 int distance = 0;
 boolean freeze = true;
+struct configuration simple_move_conf = {
+  14, -15, 0, 
+  -26, 45, 0,
+  -30, -15, 0,
+  -30, 15, 0,
+  14, -45, 0,
+  22, 15, 0
+};
 
 void loop(){
   distance = getFrontDistance();
@@ -37,27 +46,24 @@ void loop(){
     flushLed();
   }
     if( distance < 60 && !freeze ) {
-    initStartPosition();
+    resetToDefaultPosition(15);
     sayHello(5);
-    initStartPosition();
+    resetToDefaultPosition(15);
     rotate(6, 30);
     rotate(6, 30);
     rotate(6, 30);
+    initMove(simple_move_conf, 15);
   }
   if( distance < 30) {
-    freeze = !freeze;
     if ( !freeze) {
-      initStartPosition();
-      //sayHello(10);
+      resetToDefaultPosition(15);
     } else {
-    sayHello(5);
+      initMove(simple_move_conf, 15);
   }
-    delay(2000);
+    freeze = !freeze;
   } 
    if( !freeze ) {
-    initMove();
-    simpleMove(3);
-    //delay(3000);
+    simpleMove(7);
   } 
 }
 
@@ -78,51 +84,346 @@ int getFrontDistance(){
   return distance/58;                              // Calculate distance from time of pulse in cm
 }
 
-void initMove(){
-    leg1.horizontalMovement(75);
-    leg2.horizontalMovement(135);
-    leg3.horizontalMovement(75);
-    leg4.horizontalMovement(105);
-    leg5.horizontalMovement(45);
-    leg6.horizontalMovement(105);
-    leg1.verticalMovement(90);
-    leg2.verticalMovement(90);
-    leg3.verticalMovement(90);
-    leg4.verticalMovement(90);
-    leg5.verticalMovement(90);
-    leg6.verticalMovement(90);
-    leg1.kneeMovement(104);
-    leg2.kneeMovement(68);
-    //leg2.kneeMovement(90);
-    leg3.kneeMovement(68);
-    leg4.kneeMovement(68);
-    leg5.kneeMovement(96);
-    //leg5.kneeMovement(90);
-    leg6.kneeMovement(112);
-    delay(60);
+void applyConf(struct configuration conf,int sleep){
+  for(int i = 0; i < 90; i++){
+    if(conf.left_front_knee_pos !=0 && conf.left_front_knee_pos>0){
+        conf.left_front_knee_pos--;
+        leg1.incKnee();
+    } else if ( conf.left_front_knee_pos !=0 && conf.left_front_knee_pos<0 ){
+        conf.left_front_knee_pos++;
+        leg1.decKnee();
+    } 
+    if(conf.left_front_hori_pos !=0 && conf.left_front_hori_pos>0){
+        conf.left_front_hori_pos--;
+        leg1.incHorizontal();
+    } else if ( conf.left_front_hori_pos !=0 && conf.left_front_hori_pos<0 ){
+        conf.left_front_hori_pos++;
+        leg1.decHorizontal();
+    } 
+    if(conf.left_front_vert_pos !=0 && conf.left_front_vert_pos>0){
+        conf.left_front_vert_pos--;
+        leg1.incVertical();
+    } else if ( conf.left_front_vert_pos !=0 && conf.left_front_vert_pos<0 ){
+        conf.left_front_vert_pos++;
+        leg1.decVertical();
+    }
+    //left_middle
+    if(conf.left_middle_knee_pos !=0 && conf.left_middle_knee_pos>0){
+        conf.left_middle_knee_pos--;
+        leg2.incKnee();
+    } else if ( conf.left_middle_knee_pos !=0 && conf.left_middle_knee_pos<0 ){
+        conf.left_middle_knee_pos++;
+        leg2.decKnee();
+    } 
+    if(conf.left_middle_hori_pos !=0 && conf.left_middle_hori_pos>0){
+        conf.left_middle_hori_pos--;
+        leg2.incHorizontal();
+    } else if ( conf.left_middle_hori_pos !=0 && conf.left_middle_hori_pos<0 ){
+        conf.left_middle_hori_pos++;
+        leg2.decHorizontal();
+    } 
+    if(conf.left_middle_vert_pos !=0 && conf.left_middle_vert_pos>0){
+        conf.left_middle_vert_pos--;
+        leg2.incVertical();
+    } else if ( conf.left_middle_vert_pos !=0 && conf.left_middle_vert_pos<0 ){
+        conf.left_middle_vert_pos++;
+        leg2.decVertical();
+    }
+    //left_rear
+    if(conf.left_rear_knee_pos !=0 && conf.left_rear_knee_pos>0){
+        conf.left_rear_knee_pos--;
+        leg3.incKnee();
+    } else if ( conf.left_rear_knee_pos !=0 && conf.left_rear_knee_pos<0 ){
+        conf.left_rear_knee_pos++;
+        leg3.decKnee();
+    } 
+    if(conf.left_rear_hori_pos !=0 && conf.left_rear_hori_pos>0){
+        conf.left_rear_hori_pos--;
+        leg3.incHorizontal();
+    } else if ( conf.left_rear_hori_pos !=0 && conf.left_rear_hori_pos<0 ){
+        conf.left_rear_hori_pos++;
+        leg3.decHorizontal();
+    } 
+    if(conf.left_rear_vert_pos !=0 && conf.left_rear_vert_pos>0){
+        conf.left_rear_vert_pos--;
+        leg3.incVertical();
+    } else if ( conf.left_rear_vert_pos !=0 && conf.left_rear_vert_pos<0 ){
+        conf.left_rear_vert_pos++;
+        leg3.decVertical();
+    }
+  //right_front_
+    if(conf.right_front_knee_pos !=0 && conf.right_front_knee_pos>0){
+        conf.right_front_knee_pos--;
+        leg4.incKnee();
+    } else if ( conf.right_front_knee_pos !=0 && conf.right_front_knee_pos<0 ){
+        conf.right_front_knee_pos++;
+        leg4.decKnee();
+    } 
+    if(conf.right_front_hori_pos !=0 && conf.right_front_hori_pos>0){
+        conf.right_front_hori_pos--;
+        leg4.incHorizontal();
+    } else if ( conf.right_front_hori_pos !=0 && conf.right_front_hori_pos<0 ){
+        conf.right_front_hori_pos++;
+        leg4.decHorizontal();
+    } 
+    if(conf.right_front_vert_pos !=0 && conf.right_front_vert_pos>0){
+        conf.right_front_vert_pos--;
+        leg4.incVertical();
+    } else if ( conf.right_front_vert_pos !=0 && conf.right_front_vert_pos<0 ){
+        conf.right_front_vert_pos++;
+        leg4.decVertical();
+    }
+    //right_middle_
+    if(conf.right_middle_knee_pos !=0 && conf.right_middle_knee_pos>0){
+        conf.right_middle_knee_pos--;
+        leg5.incKnee();
+    } else if ( conf.right_middle_knee_pos !=0 && conf.right_middle_knee_pos<0 ){
+        conf.right_middle_knee_pos++;
+        leg5.decKnee();
+    } 
+    if(conf.right_middle_hori_pos !=0 && conf.right_middle_hori_pos>0){
+        conf.right_middle_hori_pos--;
+        leg5.incHorizontal();
+    } else if ( conf.right_middle_hori_pos !=0 && conf.right_middle_hori_pos<0 ){
+        conf.right_middle_hori_pos++;
+        leg5.decHorizontal();
+    } 
+    if(conf.right_middle_vert_pos !=0 && conf.right_middle_vert_pos>0){
+        conf.right_middle_vert_pos--;
+        leg5.incVertical();
+    } else if ( conf.right_middle_vert_pos !=0 && conf.right_middle_vert_pos<0 ){
+        conf.right_middle_vert_pos++;
+        leg5.decVertical();
+    }
+    //right_rear_
+    if(conf.right_rear_knee_pos !=0 && conf.right_rear_knee_pos>0){
+        conf.right_rear_knee_pos--;
+        leg6.incKnee();
+    } else if ( conf.right_rear_knee_pos !=0 && conf.right_rear_knee_pos<0 ){
+        conf.right_rear_knee_pos++;
+        leg6.decKnee();
+    } 
+    if(conf.right_rear_hori_pos !=0 && conf.right_rear_hori_pos>0){
+        conf.right_rear_hori_pos--;
+        leg6.incHorizontal();
+    } else if ( conf.right_rear_hori_pos !=0 && conf.right_rear_hori_pos<0 ){
+        conf.right_rear_hori_pos++;
+        leg6.decHorizontal();
+    } 
+    if(conf.right_rear_vert_pos !=0 && conf.right_rear_vert_pos>0){
+        conf.right_rear_vert_pos--;
+        leg6.incVertical();
+    } else if ( conf.right_rear_vert_pos !=0 && conf.right_rear_vert_pos<0 ){
+        conf.right_rear_vert_pos++;
+        leg6.decVertical();
+    }
+    delay(sleep);
+  }  
+}
+void initMove(struct configuration conf, int sleep){     
+      resetToDefaultPosition(sleep);
+      applyConf(conf,sleep);
+//    leg1.horizontalMovement(75);
+//    leg2.horizontalMovement(135);
+//    leg3.horizontalMovement(75);
+//    leg4.horizontalMovement(105);
+//    leg5.horizontalMovement(45);
+//    leg6.horizontalMovement(105);
+//    leg1.verticalMovement(90);
+//    leg2.verticalMovement(90);
+//    leg3.verticalMovement(90);
+//    leg4.verticalMovement(90);
+//    leg5.verticalMovement(90);
+//    leg6.verticalMovement(90);
+//    leg1.kneeMovement(104);
+//    leg2.kneeMovement(64);
+//    //leg2.kneeMovement(90);
+//    leg3.kneeMovement(60);
+//    leg4.kneeMovement(60);
+//    leg5.kneeMovement(104);
+//    //leg5.kneeMovement(90);
+//    leg6.kneeMovement(112);
+//    delay(60);
 }
 
-void initStartPosition(){
-    leg1.horizontalMovement(90);
-    leg2.horizontalMovement(90);
-    leg3.horizontalMovement(90);
-    leg4.horizontalMovement(90);
-    leg5.horizontalMovement(90);
-    leg6.horizontalMovement(90);
-    leg1.verticalMovement(90);
-    leg2.verticalMovement(90);
-    leg3.verticalMovement(90);
-    leg4.verticalMovement(90);
-    leg5.verticalMovement(90);
-    leg6.verticalMovement(90);
-    leg1.kneeMovement(90);
-    leg2.kneeMovement(90);
-    leg3.kneeMovement(90);
-    leg4.kneeMovement(90);
-    leg5.kneeMovement(90);
-    leg6.kneeMovement(90);
-    delay(200);
+void resetToDefaultPosition( int sleep){
+  boolean any_change = true;
+  for(int i = 0; i < 90 && any_change; i++){
+    any_change = false;
+    if(leg1.knee_current_pos < 90){
+        leg1.incKnee();
+        any_change = true;
+      }
+    if ( leg1.knee_current_pos > 90){
+        leg1.decKnee();
+        any_change = true;
+      }   
+    if(leg1.horizontal_current_pos < 90){
+        leg1.incHorizontal();
+        any_change = true;
+      }
+    if ( leg1.horizontal_current_pos > 90){
+        leg1.decHorizontal();
+        any_change = true;
+      } 
+    if(leg1.vertical_current_pos < 90){
+        leg1.incVertical();
+        any_change = true;
+      }
+    if ( leg1.vertical_current_pos > 90){
+        leg1.decVertical();
+        any_change = true;
+      }
+    
+     if(leg2.knee_current_pos < 90){
+        leg2.incKnee();
+        any_change = true;
+      }
+    if ( leg2.knee_current_pos > 90){
+        leg2.decKnee();
+      }   
+    if(leg2.horizontal_current_pos < 90){
+        leg2.incHorizontal();
+        any_change = true;
+      }
+    if ( leg2.horizontal_current_pos > 90){
+        leg2.decHorizontal();
+        any_change = true;
+      } 
+    if(leg2.vertical_current_pos < 90){
+        leg2.incVertical();
+        any_change = true;
+      }
+    if ( leg2.vertical_current_pos > 90){
+        leg2.decVertical();
+        any_change = true;
+      }
+
+    if(leg3.knee_current_pos < 90){
+        leg3.incKnee();
+        any_change = true;
+      }
+    if ( leg3.knee_current_pos > 90){
+        leg3.decKnee();
+        any_change = true;
+      }   
+    if(leg3.horizontal_current_pos < 90){
+        leg3.incHorizontal();
+        any_change = true;
+      }
+    if ( leg3.horizontal_current_pos > 90){
+        leg3.decHorizontal();
+        any_change = true;
+      } 
+    if(leg3.vertical_current_pos < 90){
+        leg3.incVertical();
+        any_change = true;
+      }
+    if ( leg3.vertical_current_pos > 90){
+        leg3.decVertical();
+        any_change = true;
+      }
+    
+    if(leg4.knee_current_pos < 90){
+        leg4.incKnee();
+        any_change = true;
+      }
+    if ( leg4.knee_current_pos > 90){
+        leg4.decKnee();
+        any_change = true;
+      }   
+    if(leg4.horizontal_current_pos < 90){
+        leg4.incHorizontal();
+        any_change = true;
+      }
+    if ( leg4.horizontal_current_pos > 90){
+        leg4.decHorizontal();
+        any_change = true;
+      } 
+    if(leg4.vertical_current_pos < 90){
+        leg4.incVertical();
+        any_change = true;
+      }
+    if ( leg4.vertical_current_pos > 90){
+        leg4.decVertical();
+        any_change = true;
+      }
+    
+    if(leg5.knee_current_pos < 90){
+        leg5.incKnee();
+        any_change = true;
+      }
+    if ( leg5.knee_current_pos > 90){
+        leg5.decKnee();
+        any_change = true;
+      }   
+    if(leg5.horizontal_current_pos < 90){
+        leg5.incHorizontal();
+        any_change = true;
+      }
+    if ( leg5.horizontal_current_pos > 90){
+        leg5.decHorizontal();
+        any_change = true;
+      } 
+    if(leg5.vertical_current_pos < 90){
+        leg5.incVertical();
+        any_change = true;
+      }
+    if ( leg5.vertical_current_pos > 90){
+        leg5.decVertical();
+        any_change = true;
+      }
+    
+    if(leg6.knee_current_pos < 90){
+        leg6.incKnee();
+        any_change = true;
+      }
+    if ( leg6.knee_current_pos > 90){
+        leg6.decKnee();
+        any_change = true;
+      }   
+    if(leg6.horizontal_current_pos < 90){
+        leg6.incHorizontal();
+        any_change = true;
+      }
+    if ( leg6.horizontal_current_pos > 90){
+        leg6.decHorizontal();
+        any_change = true;
+      } 
+    if(leg6.vertical_current_pos < 90){
+        leg6.incVertical();
+        any_change = true;
+      }
+    if ( leg6.vertical_current_pos > 90){
+        leg6.decVertical();
+        any_change = true;
+      }    
+    delay(sleep);
+  } 
 }
+
+
+//void initStartPosition(){
+//    leg1.horizontalMovement(90);
+//    leg2.horizontalMovement(90);
+//    leg3.horizontalMovement(90);
+//    leg4.horizontalMovement(90);
+//    leg5.horizontalMovement(90);
+//    leg6.horizontalMovement(90);
+//    leg1.verticalMovement(90);
+//    leg2.verticalMovement(90);
+//    leg3.verticalMovement(90);
+//    leg4.verticalMovement(90);
+//    leg5.verticalMovement(90);
+//    leg6.verticalMovement(90);
+//    leg1.kneeMovement(90);
+//    leg2.kneeMovement(90);
+//    leg3.kneeMovement(90);
+//    leg4.kneeMovement(90);
+//    leg5.kneeMovement(90);
+//    leg6.kneeMovement(90);
+//    delay(200);
+//}
 
 void sayHello(int sleep){
   for(int i = 0; i < 80; i++){
@@ -580,7 +881,6 @@ delay(sleep);
 }
 
 void krok2(int sleep){
-  
   leg1.initPosition(90,10,90); //1
   leg5.initPosition(90,75,90); //2
   leg3.initPosition(90,140,90); //3
