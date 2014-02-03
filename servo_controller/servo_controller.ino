@@ -65,16 +65,12 @@ void loop(){
   } 
   if( !freeze ) {
     simpleMove(7);  
-    //    if(i==1){
-    //    i++;
-    //    initStartPosition();
-    //    krok(3);
   }
-  if(i==0){
-    i++;
-    initKrok2();
-    krok2(3);
-  }
+//  if(i==0){
+//    i++;
+//    initKrok2();
+//    krok2(3);
+//  }
 
 }
 
@@ -431,29 +427,6 @@ void resetToDefaultPosition( int sleep){
   } 
 }
 
-
-//void initStartPosition(){
-//    leg1.horizontalMovement(90);
-//    leg2.horizontalMovement(90);
-//    leg3.horizontalMovement(90);
-//    leg4.horizontalMovement(90);
-//    leg5.horizontalMovement(90);
-//    leg6.horizontalMovement(90);
-//    leg1.verticalMovement(90);
-//    leg2.verticalMovement(90);
-//    leg3.verticalMovement(90);
-//    leg4.verticalMovement(90);
-//    leg5.verticalMovement(90);
-//    leg6.verticalMovement(90);
-//    leg1.kneeMovement(90);
-//    leg2.kneeMovement(90);
-//    leg3.kneeMovement(90);
-//    leg4.kneeMovement(90);
-//    leg5.kneeMovement(90);
-//    leg6.kneeMovement(90);
-//    delay(200);
-//}
-
 void initKrok2(){
   leg1.horizontalMovement(75);
   leg2.horizontalMovement(135);
@@ -475,6 +448,7 @@ void initKrok2(){
   leg6.kneeMovement(90);
   delay(60);
 }
+
 void sayHello(int sleep){
   for(int i = 0; i < 80; i++){
     if( i % 2 == 0){
@@ -1054,6 +1028,7 @@ void krok2(int sleep){
   }	
 
 }
+
 
 
 
